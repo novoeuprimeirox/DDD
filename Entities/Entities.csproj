@@ -8,4 +8,9 @@
     <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Enums\" />
+    <Folder Include="Notifications\" />
+  </ItemGroup>
+
 </Project>
