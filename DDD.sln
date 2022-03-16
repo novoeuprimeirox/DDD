@@ -17,9 +17,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Test", "6 - Test", "{CC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7- Help", "7- Help", "{E407BD98-4904-41FC-B296-7651EA078573}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{33203608-9D5A-4F4A-8C87-6B03B8C6C27A}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33203608-9D5A-4F4A-8C87-6B03B8C6C27A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33203608-9D5A-4F4A-8C87-6B03B8C6C27A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33203608-9D5A-4F4A-8C87-6B03B8C6C27A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33203608-9D5A-4F4A-8C87-6B03B8C6C27A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33203608-9D5A-4F4A-8C87-6B03B8C6C27A} = {93A6A988-933E-4EA8-BFA6-B5EB17DCBB54}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4361F3E-A0E2-46DC-9305-CFB3014B7778}
