@@ -1,10 +1,7 @@
 ﻿using Domain.Interfaces.InterfaceEmpresa;
 using Domain.Interfaces.IServiceEmpresa;
 using Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Services
@@ -14,31 +11,31 @@ namespace Domain.Services
         private readonly IEmpresa _repository;
         public ServiceEmpresa(IEmpresa repository)
         {
-
+            _repository = repository;   
         }
-        public Task AddProduct(Empresa empresa)
+        public Task AddEmpresa(Empresa empresa)
         {
-            throw new NotImplementedException();
+          return  _repository.Add(empresa);
         }
 
         public Task DeleteEmpresa(Empresa empresa)
         {
-            throw new NotImplementedException();
+            return _repository.Delete(empresa);
         }
 
-        public Task<List<Empresa>> Listar()
+        public Task<List<Empresa>> GetAll()
         {
-            throw new NotImplementedException();
+            return _repository.List();
         }
 
-        public Task<List<Empresa>> ListarId(int id)
+        public Task<Empresa> Get(int id)
         {
-            throw new NotImplementedException();
+            return _repository.GetEntityById(id);
         }
 
         public Task UpdateEmpresa(Empresa empresa)
         {
-            throw new NotImplementedException();
+            return _repository.Update(empresa);
         }
     }
 }
