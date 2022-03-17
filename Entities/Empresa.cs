@@ -1,20 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Entities.Notifications;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities
 {
-    [Table("Empresa")]
-    public class Empresa
+    public class Empresa : Base
     {
-        public int Id { get; set; }
-        
-        [Required(ErrorMessage = "O nome da empresa é obrigatório", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "O site é obrigatório", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string Site { get; set; }
-
-        [Display(Name = "Quantida de funcionários")]
+        
         public int QuantidadeFuncionarios { get; set; }
     }
 }
