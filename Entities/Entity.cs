@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Notifications
 {
-    public class Base : Notifies
+    public class Entity : Notifies
     { 
 
         public int Id { get; set; }

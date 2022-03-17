@@ -1,41 +1,47 @@
-﻿using Domain.Interfaces.InterfaceEmpresa;
-using Domain.Interfaces.IServiceEmpresa;
+﻿using Domain.Interfaces.Generics;
+using Domain.Interfaces.IServices;
 using Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public class ServiceEmpresa : IServiceEmpresa
+    public class ServiceEmpresa : IEmpresaServices
     {
-        private readonly IEmpresa _repository;
-        public ServiceEmpresa(IEmpresa repository)
+        private readonly IEmpresaServices _repository;
+        public ServiceEmpresa(IEmpresaServices repository)
         {
-            _repository = repository;   
-        }
-        public Task AddEmpresa(Empresa empresa)
-        {
-          return  _repository.Add(empresa);
+            _repository = repository;
         }
 
-        public Task DeleteEmpresa(Empresa empresa)
+        public void Add<T>(T entity) where T : class
         {
-            return _repository.Delete(empresa);
+            _repository.Add(entity);
+        }
+          
+        public void Delete<T>(T entity) where T : class
+        {
+            _repository.Delete(entity);
+        }
+         
+
+        public Empresa[] GetAll()
+        {
+           return _repository.GetAll();
         }
 
-        public Task<List<Empresa>> GetAll()
+        public Empresa GetById(int id)
         {
-            return _repository.List();
+            return _repository.GetById(id);
+        }
+         
+        public bool SaveChanges()
+        {
+           return _repository.SaveChanges();
         }
 
-        public Task<Empresa> Get(int id)
+        public void Update<T>(T entity) where T : class
         {
-            return _repository.GetEntityById(id);
+            _repository.Update(entity);    
         }
-
-        public Task UpdateEmpresa(Empresa empresa)
-        {
-            return _repository.Update(empresa);
-        }
+         
     }
 }

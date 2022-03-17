@@ -1,90 +1,59 @@
 ﻿using Domain.Interfaces.Generics;
+using Entities;
 using Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Win32.SafeHandles;
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace Infrastructure.Repository.Generics
 {
-    public class RepositoryGenerics<T> : IGeneric<T>, IDisposable where T : class
+    public class RepositoryGenerics : IRepository
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-        public async Task Add(T Objeto)
+        private readonly ContextBase _contextBase;
+        public RepositoryGenerics(ContextBase contextBase)
         {
-            using var data = new ContextBase(_OptionsBuilder);
-            await data.Set<T>().AddAsync(Objeto);
-            await data.SaveChangesAsync();
-        }
-
-        public async Task Delete(T Objeto)
-        {
-            using (var data = new ContextBase(_OptionsBuilder))
-            {
-                data.Set<T>().Remove(Objeto);
-                await data.SaveChangesAsync();
-            }
-        }
-
-        public async Task<T> GetEntityById(int Id)
-        {
-            using (var data = new ContextBase(_OptionsBuilder))
-            {
-                return await data.Set<T>().FindAsync(Id);
-            }
-        }
-
-        public async Task<List<T>> List()
-        {
-            using (var data = new ContextBase(_OptionsBuilder))
-            {
-                return await data.Set<T>().AsNoTracking().ToListAsync();
-            }
-        }
-
-        public async Task Update(T Objeto)
-        {
-            using (var data = new ContextBase(_OptionsBuilder))
-            {
-                data.Set<T>().Update(Objeto);
-                await data.SaveChangesAsync();
-            }
+            this._contextBase = contextBase;
         }
 
 
-        #region Disposed https://docs.microsoft.com/pt-br/dotnet/standard/garbage-collection/implementing-dispose
-        // Flag: Has Dispose already been called?
-        bool disposed = false;
-        // Instantiate a SafeHandle instance.
-        SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
-
-
-
-        // Public implementation of Dispose pattern callable by consumers.
-        public void Dispose()
+        public void Add<T>(T entity) where T : class
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            _contextBase.Add(entity);
         }
 
-
-        // Protected implementation of Dispose pattern.
-        protected virtual void Dispose(bool disposing)
+        public void Delete<T>(T entity) where T : class
         {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                handle.Dispose();
-                // Free any other managed objects here.
-                //
-            }
-
-            disposed = true;
+            _contextBase.Remove(entity);
         }
-        #endregion
+
+        public Empresa[] GetAll()
+        {
+            IQueryable<Empresa> query = _contextBase.Empresas;
+
+            query = query.AsNoTracking()
+                         .OrderBy(a => a.Id);
+
+            return query.ToArray();
+        }
+
+        public Empresa GetById(int id)
+        {
+            IQueryable<Empresa> query = _contextBase.Empresas;
+
+            query = query.AsNoTracking()
+                         .OrderBy(a => a.Id)
+                         .Where(pessoa => pessoa.Id == id);
+
+            return query.FirstOrDefault();
+        }
+
+        public bool SaveChanges()
+        {
+            return (_contextBase.SaveChanges() > 0);
+        }
+
+        public void Update<T>(T entity) where T : class
+        {
+            _contextBase.Update(entity);
+        }
     }
 }

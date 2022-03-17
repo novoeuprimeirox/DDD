@@ -1,3 +1,4 @@
+using HelpConfig;
 using Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,7 +31,7 @@ namespace WebEmpresaX
         Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddRazorPages();
-            //        HelpStartup.ConfigureSingleton(services);
+                   HelpStartup.ConfigureSingleton(services);
 
             services.AddControllersWithViews();
         }

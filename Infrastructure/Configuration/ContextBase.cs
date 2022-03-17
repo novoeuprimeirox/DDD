@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
         public ContextBase(DbContextOptions<ContextBase> options) : base(options)
         {
         }
-        public DbSet<Empresa> Compras { get; set; }
+        public DbSet<Empresa> Empresas{ get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entities
 {
-    public class Empresa : Base
+    public class Empresa : Entity
     {
         [Required(ErrorMessage = "Campo Obrigatório")]
         public string Nome { get; set; }
