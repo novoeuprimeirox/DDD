@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31702.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{68891955-06B3-49D6-AFA0-09F8344D353E}"
 EndProject
@@ -17,9 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Test", "6 - Test", "{CC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7- Help", "7- Help", "{E407BD98-4904-41FC-B296-7651EA078573}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{33203608-9D5A-4F4A-8C87-6B03B8C6C27A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{33203608-9D5A-4F4A-8C87-6B03B8C6C27A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEmpresaX", "WebEmpresaX\WebEmpresaX.csproj", "{2F87552A-91C7-43F2-A0BA-BFD764EE164B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebEmpresaX", "WebEmpresaX\WebEmpresaX.csproj", "{2F87552A-91C7-43F2-A0BA-BFD764EE164B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{A95682A6-2CFD-4BF1-BF44-02EB1EC2FA8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{2F87552A-91C7-43F2-A0BA-BFD764EE164B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F87552A-91C7-43F2-A0BA-BFD764EE164B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F87552A-91C7-43F2-A0BA-BFD764EE164B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A95682A6-2CFD-4BF1-BF44-02EB1EC2FA8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A95682A6-2CFD-4BF1-BF44-02EB1EC2FA8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A95682A6-2CFD-4BF1-BF44-02EB1EC2FA8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A95682A6-2CFD-4BF1-BF44-02EB1EC2FA8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{33203608-9D5A-4F4A-8C87-6B03B8C6C27A} = {93A6A988-933E-4EA8-BFA6-B5EB17DCBB54}
 		{2F87552A-91C7-43F2-A0BA-BFD764EE164B} = {68891955-06B3-49D6-AFA0-09F8344D353E}
+		{A95682A6-2CFD-4BF1-BF44-02EB1EC2FA8E} = {EFE1829A-E445-4762-B0DA-2AB41A166AFB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4361F3E-A0E2-46DC-9305-CFB3014B7778}
