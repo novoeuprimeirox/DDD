@@ -18,11 +18,13 @@ namespace Infrastructure.Repository.Generics
         public void Add<T>(T entity) where T : class
         {
             _contextBase.Add(entity);
+            SaveChanges();
         }
 
         public void Delete<T>(T entity) where T : class
         {
             _contextBase.Remove(entity);
+            SaveChanges();
         }
 
         public Empresa[] GetAll()
@@ -54,6 +56,7 @@ namespace Infrastructure.Repository.Generics
         public void Update<T>(T entity) where T : class
         {
             _contextBase.Update(entity);
+            SaveChanges();
         }
     }
 }

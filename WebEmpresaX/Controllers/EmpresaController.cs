@@ -1,10 +1,11 @@
 ﻿using Domain.Interfaces.Generics;
-using Domain.Interfaces.IServices;
-using Domain.Services;
 using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Net;
+
 
 namespace WebEmpresaX.Controllers
 {
@@ -13,7 +14,7 @@ namespace WebEmpresaX.Controllers
         private readonly IRepository _repository;
         public EmpresaController(IRepository repository)
         {
-          this._repository = repository;
+            this._repository = repository;
         }
         // GET: EmpresaController
         public ActionResult Index()
@@ -26,10 +27,20 @@ namespace WebEmpresaX.Controllers
         // GET: EmpresaController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var empresa = _repository.GetById(id);
+            if (empresa == null)
+            {
+                return NotFound();
+            }
+
+            return View(empresa);
         }
 
-        // GET: EmpresaController/Create
+
         public ActionResult Create()
         {
             return View();
@@ -38,10 +49,14 @@ namespace WebEmpresaX.Controllers
         // POST: EmpresaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Empresa empresa)
         {
             try
             {
+                if (!ModelState.IsValid) return View(empresa);
+
+                _repository.Add(empresa);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -50,46 +65,93 @@ namespace WebEmpresaX.Controllers
             }
         }
 
-        // GET: EmpresaController/Edit/5
+     
+
         public ActionResult Edit(int id)
         {
-            return View();
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var empresa =  _repository.GetById(id);
+            if (empresa == null)
+            {
+                return NotFound();
+            }
+            return View(empresa);
+
+
         }
 
-        // POST: EmpresaController/Edit/5
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+         
+        public IActionResult Edit(int id,Empresa empresa)
         {
-            try
+            if (id != empresa.Id)
             {
+                return NotFound();
+            }
+
+           
+                try
+                {
+                    _repository.Update(empresa);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EmpresaExists(empresa.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+          
+            return View(empresa);
         }
 
-        // GET: EmpresaController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var empresa = _repository.GetById(id);
+            if (empresa == null)
+            {
+                return NotFound();
+            }
+
+            return View(empresa);
         }
 
-        // POST: EmpresaController/Delete/5
-        [HttpPost]
+        // POST: Usuarios/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult DeleteConfirmed(int id)
         {
-            try
+            var empresa = _repository.GetById(id);
+            _repository.Delete(empresa);
+             
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool EmpresaExists(int id)
+        {
+            var empresa = _repository.GetById(id);
+
+            if (empresa==null)
             {
-                return RedirectToAction(nameof(Index));
+                return true;
             }
-            catch
-            {
-                return View();
-            }
+            return false;
         }
     }
 }
