@@ -11,12 +11,12 @@
 
  
   <ItemGroup>
-    <Folder Include="Repository\Generics\" />
     <Folder Include="Repository\Repositories\" />
   </ItemGroup>
 
  
   <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 
